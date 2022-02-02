@@ -5,11 +5,10 @@ const Constraint = Matter.Constraint;
 
 var engine, world;
 var canvas;
-var palyer, playerBase;
+var player, playerBase, playerArcher;
 var computer, computerBase;
 
-var arrow;
-
+var playerArrow, computerArrow;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -44,9 +43,15 @@ function setup() {
     120,
     120
   );
-  
-  arrow = new PlayerArrow(playerArcher.body.position.x, playerArcher.body.position.y, 100, 10);
-  
+
+  playerArrow = new PlayerArrow(
+    playerArcher.body.position.x,
+    playerArcher.body.position.y,
+    100,
+    10
+  );
+
+  computerArrow = new ComputerArrow()
 }
 
 function draw() {
@@ -60,17 +65,15 @@ function draw() {
   textSize(40);
   text("EPIC ARCHERY", width / 2, 100);
 
- 
   playerBase.display();
   player.display();
-  
 
   computerBase.display();
   computer.display();
-  
+
   playerArcher.display();
-  computerArcher.display()
-  
+  computerArcher.display();
+
   // if(keyCode === 32){
   //   arrow.display()
   //   arrow.shoot(playerArcher);
@@ -79,9 +82,9 @@ function draw() {
   //  if(keyCode === 32){
   //   arrow.shoot(playerArcher.body.angle);
   //  }
-   
-   if(keyCode === 32){
-    arrow.display()
+
+  if (keyCode === 32) {
+    arrow.display();
     arrow.shoot(playerArcher.body.angle);
-   }
+  }
 }
